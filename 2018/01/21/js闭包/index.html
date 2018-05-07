@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Swift的博客">
 <meta property="og:description" content="JavaScript变量分为全局变量和局部变量。局部变量可以用到闭包。 全局变量函数可以访问函数内部定义的变量，例如:1234function test&amp;#123;    var a = 4;    return a * a;&amp;#125; 函数也可以访问外部定义的变量，例如：1234var a = 4;function test&amp;#123;    return a * a;&amp;#125; 结果均为">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-06T09:24:41.944Z">
+<meta property="og:updated_time" content="2018-05-07T14:32:52.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js闭包">
 <meta name="twitter:description" content="JavaScript变量分为全局变量和局部变量。局部变量可以用到闭包。 全局变量函数可以访问函数内部定义的变量，例如:1234function test&amp;#123;    var a = 4;    return a * a;&amp;#125; 函数也可以访问外部定义的变量，例如：1234var a = 4;function test&amp;#123;    return a * a;&amp;#125; 结果均为">
@@ -354,7 +354,7 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="从外部读取局部变量"><a href="#从外部读取局部变量" class="headerlink" title="从外部读取局部变量"></a>从外部读取局部变量</h2><p>出于种种原因，我们有时候需要得到函数内的局部变量。但是，正常情况下是办不到的，只有通过变通方法才能实现。那就是在函数的内部，再定义一个函数 :<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">999</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="从外部读取局部变量"><a href="#从外部读取局部变量" class="headerlink" title="从外部读取局部变量"></a>从外部读取局部变量</h2><p>出于种种原因，我们有时候需要得到函数内的局部变量。但是，正常情况下是办不到的，只有通过变通方法才能实现。那就是在函数的内部，再定义一个函数 :<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">999</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在上面的代码中，函数 <code>f2</code> 就被包括在函数 <code>f1</code> 内部，这时 <code>f1</code> 内部的所有局部变量，对 <code>f2</code> 都是可见的。但是反过来不行，<code>f2</code> 内部的局部变量，对 <code>f1</code> 就是不可见的。这就是js语言的“链式作用域”结构，子对象会一级一级地向上寻找所有父对象的变量。所以，父对象的所有变量，对子对象都是可见的，反之则不成立。</p>
 <p>既然 <code>f2</code> 可以读取 <code>f1</code> 中的局部变量，那么只要把 <code>f2</code> 作为返回值，我们就可以在 <code>f1</code> 外部读取它的内部变量了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> n=<span class="number">999</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(n); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result=f1();</span><br><span class="line">result(); <span class="comment">// 999</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。</p>
@@ -522,7 +522,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -533,7 +533,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -544,7 +544,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
