@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="前言最近在学习Spring框架，它的核心就是IoC容器。要掌握Spring框架，就必须要理解控制反转的思想以及依赖注入的实现方式。下面，我们将围绕下面几个问题来探讨控制反转与依赖注入的关系以及在Spring中如何应用。  什么是控制反转？  什么是依赖注入？  它们之间有什么关系？ 如何在Spring框架中应用依赖注入？  什么是控制反转在讨论控制反转之前，我们先来看看软件系统中耦合的对象。  从">
+<meta name="description" content="前言最近在学习Spring框架，它的核心就是IoC容器。要掌握Spring框架，就必须要理解控制反转的思想以及依赖注入的实现方式。下面，我们将围绕下面几个问题来探讨控制反转与依赖注入的关系以及在Spring中如何应用。  什么是控制反转？ 什么是依赖注入？ 它们之间有什么关系？ 如何在Spring框架中应用依赖注入？  什么是控制反转在讨论控制反转之前，我们先来看看软件系统中耦合的对象。  从图中">
 <meta name="keywords" content="Java,Spring,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="控制反转(IoC)与依赖注入(DI)">
 <meta property="og:url" content="http://yoursite.com/2018/05/10/控制反转(IoC)与依赖注入(DI)/index.html">
 <meta property="og:site_name" content="Swift的博客">
-<meta property="og:description" content="前言最近在学习Spring框架，它的核心就是IoC容器。要掌握Spring框架，就必须要理解控制反转的思想以及依赖注入的实现方式。下面，我们将围绕下面几个问题来探讨控制反转与依赖注入的关系以及在Spring中如何应用。  什么是控制反转？  什么是依赖注入？  它们之间有什么关系？ 如何在Spring框架中应用依赖注入？  什么是控制反转在讨论控制反转之前，我们先来看看软件系统中耦合的对象。  从">
+<meta property="og:description" content="前言最近在学习Spring框架，它的核心就是IoC容器。要掌握Spring框架，就必须要理解控制反转的思想以及依赖注入的实现方式。下面，我们将围绕下面几个问题来探讨控制反转与依赖注入的关系以及在Spring中如何应用。  什么是控制反转？ 什么是依赖注入？ 它们之间有什么关系？ 如何在Spring框架中应用依赖注入？  什么是控制反转在讨论控制反转之前，我们先来看看软件系统中耦合的对象。  从图中">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjtfr.com1.z0.glb.clouddn.com/%E9%BD%BF%E8%BD%AE_%E8%80%A6%E5%90%88%E5%85%B3%E7%B3%BB_full.jpg">
 <meta property="og:image" content="http://7xjtfr.com1.z0.glb.clouddn.com/%E9%BD%BF%E8%BD%AE_%E8%A7%A3%E8%80%A6%E5%90%88_full.jpg">
-<meta property="og:updated_time" content="2018-05-09T16:30:46.145Z">
+<meta property="og:updated_time" content="2018-05-11T05:57:22.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="控制反转(IoC)与依赖注入(DI)">
-<meta name="twitter:description" content="前言最近在学习Spring框架，它的核心就是IoC容器。要掌握Spring框架，就必须要理解控制反转的思想以及依赖注入的实现方式。下面，我们将围绕下面几个问题来探讨控制反转与依赖注入的关系以及在Spring中如何应用。  什么是控制反转？  什么是依赖注入？  它们之间有什么关系？ 如何在Spring框架中应用依赖注入？  什么是控制反转在讨论控制反转之前，我们先来看看软件系统中耦合的对象。  从">
+<meta name="twitter:description" content="前言最近在学习Spring框架，它的核心就是IoC容器。要掌握Spring框架，就必须要理解控制反转的思想以及依赖注入的实现方式。下面，我们将围绕下面几个问题来探讨控制反转与依赖注入的关系以及在Spring中如何应用。  什么是控制反转？ 什么是依赖注入？ 它们之间有什么关系？ 如何在Spring框架中应用依赖注入？  什么是控制反转在讨论控制反转之前，我们先来看看软件系统中耦合的对象。  从图中">
 <meta name="twitter:image" content="http://7xjtfr.com1.z0.glb.clouddn.com/%E9%BD%BF%E8%BD%AE_%E8%80%A6%E5%90%88%E5%85%B3%E7%B3%BB_full.jpg">
 
 
@@ -269,7 +269,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/10/控制反转(IoC)与依赖注入(DI)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="transformers">
+      <meta itemprop="name" content="Swift">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
@@ -357,10 +357,8 @@
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在学习Spring框架，它的核心就是IoC容器。要掌握Spring框架，就必须要理解控制反转的思想以及依赖注入的实现方式。下面，我们将围绕下面几个问题来探讨控制反转与依赖注入的关系以及在Spring中如何应用。</p>
 <ul>
-<li><p>什么是控制反转？</p>
-</li>
-<li><p>什么是依赖注入？</p>
-</li>
+<li>什么是控制反转？</li>
+<li>什么是依赖注入？</li>
 <li>它们之间有什么关系？</li>
 <li>如何在Spring框架中应用依赖注入？</li>
 </ul>
@@ -439,14 +437,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.png" alt="transformers 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Swift 微信支付"/>
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.png" alt="transformers 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.png" alt="Swift 支付宝"/>
         <p>支付宝</p>
       </div>
     
@@ -558,9 +556,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.jpeg"
-                alt="transformers" />
+                alt="Swift" />
             
-              <p class="site-author-name" itemprop="name">transformers</p>
+              <p class="site-author-name" itemprop="name">Swift</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -692,7 +690,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">transformers</span>
+  <span class="author" itemprop="copyrightHolder">Swift</span>
 
   
 </div>
